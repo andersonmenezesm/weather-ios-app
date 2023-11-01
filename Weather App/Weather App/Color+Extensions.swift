@@ -12,4 +12,5 @@ extension UIColor {
     static let customContrastColor = UIColor(named: "contrastColor")
     static let customPrimaryColor = UIColor(named: "brandColor")
     static let customSoftGrayColor = UIColor(named: "softGray")
+    static let customWhiteTransparente = UIColor(named: "whiteTransparent")
 }

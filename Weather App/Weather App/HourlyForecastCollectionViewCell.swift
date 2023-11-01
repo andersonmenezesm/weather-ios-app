@@ -22,7 +22,7 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8)
         
         stackView.layer.borderWidth = 1
-        stackView.layer.borderColor = UIColor.customContrastColor?.cgColor
+        stackView.layer.borderColor = UIColor.customWhiteTransparente?.cgColor
         stackView.layer.cornerRadius = 20
     
         return stackView
@@ -77,11 +77,9 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
     }
     
     private func setConstraints() {
+        stackView.setConstraintsToParents(contentView)
+        
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             iconImageView.heightAnchor.constraint(equalToConstant: 33)
         ])
     }
