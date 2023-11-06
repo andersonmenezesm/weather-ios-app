@@ -24,7 +24,6 @@ class DailyForecastTableViewCell: UITableViewCell {
     private lazy var weekeDayLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "TER"
         label.textColor = .customContrastColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -33,7 +32,6 @@ class DailyForecastTableViewCell: UITableViewCell {
     private lazy var minTemperatureLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "min 25°C"
         label.textColor = .customContrastColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -42,7 +40,6 @@ class DailyForecastTableViewCell: UITableViewCell {
     private lazy var maxTemperatureLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "max 34°C"
         label.textColor = .customContrastColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -52,7 +49,6 @@ class DailyForecastTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "cloudIcon")
         return imageView
     }()
 
@@ -64,6 +60,13 @@ class DailyForecastTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func loadData(weekDay: String?, min: String?, max: String?, icon: UIImage?) {
+        weekeDayLabel.text = weekDay
+        minTemperatureLabel.text = "min \(min ?? "")"
+        maxTemperatureLabel.text = "max \(max ?? "")"
+        iconImageView.image = icon
     }
     
     private func setupView() {
