@@ -14,5 +14,6 @@ Nesse link você encontra o projeto de interface no Figma
 ### OpenWeather API
 Esse aplicativo integra com a API da OpenWeather. Para fazer a integração você precisará realizar seu cadastro no site da API e gerar a sua chave de acesso que será utilizada nas requisições, conforme demosntrado no projeto. Diferente do projeto original, utilizei a versão 2.5
 
+<br />
 
-![CleanShot 2023-11-06 at 21 11 44@2x](https://github.com/andersonmenezesm/weather-ios-app/assets/47919476/b57ea16f-351c-4d1d-b39c-9b41ca9353cc)
+![image](https://github.com/andersonmenezesm/weather-ios-app/assets/47919476/9c44bbd2-0976-43c8-a542-8224c92d5036)
