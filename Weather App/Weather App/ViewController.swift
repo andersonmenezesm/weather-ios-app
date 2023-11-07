@@ -16,44 +16,13 @@ class ViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
-    private lazy var headerView: UIView = {
-        let view = UIView()
+
+    private lazy var headerView: HeaderView = {
+        let view = HeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .customContrastColor
-        view.layer.cornerRadius = 20
-        view.layer.shadowOffset = CGSize(width: 3, height: 5)
-        view.layer.shadowRadius = 6
-        view.layer.shadowOpacity = 0.3
         return view
     }()
-    
-    private lazy var cityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        label.textAlignment = .center
-        label.textColor = .customPrimaryColor
-        return label
-    }()
-    
-    private lazy var temperatureLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 70, weight: .bold)
-        label.textAlignment = .left
-        label.textColor = .customPrimaryColor
-        return label
-    }()
-    
-    private lazy var weatherIcon: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "sunIcon")
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
+
     private lazy var humidityLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -179,12 +148,13 @@ class ViewController: UIViewController {
     }
     
     private func loadData() {
-        cityLabel.text = city.name
+        headerView.cityLabel.text = city.name
+        headerView.temperatureLabel.text = forecastResponse?.current?.temp.toCelsius()
+        headerView.weatherIcon.image = UIImage(named: forecastResponse?.current?.weather.first?.icon ?? "")
         
-        temperatureLabel.text = forecastResponse?.current?.temp.toCelsius()
         humidityValueLabel.text = "\(forecastResponse?.current?.humidity ?? 0)mm"
         windValueLabel.text = "\(forecastResponse?.current?.windSpeed ?? 0)km/h"
-        weatherIcon.image = UIImage(named: forecastResponse?.current?.weather.first?.icon ?? "")
+        
         
         if forecastResponse?.current?.dt.isDayTime() ?? true {
             backgroundView.image = UIImage(named: "background-day")
@@ -212,10 +182,6 @@ class ViewController: UIViewController {
         view.addSubview(dailyForecastLabel)
         view.addSubview(dailyForecastTableView)
         
-        headerView.addSubview(cityLabel)
-        headerView.addSubview(temperatureLabel)
-        headerView.addSubview(weatherIcon)
-        
     }
 
     private func setConstraints() {
@@ -233,20 +199,20 @@ class ViewController: UIViewController {
             headerView.heightAnchor.constraint(equalToConstant: 150)
         ])
         
-        NSLayoutConstraint.activate([
-            cityLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 20),
-            cityLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
-            cityLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15),
-            cityLabel.heightAnchor.constraint(equalToConstant: 20),
-            temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 18),
-            temperatureLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
-            temperatureLabel.heightAnchor.constraint(equalToConstant: 71),
-            weatherIcon.heightAnchor.constraint(equalToConstant: 86),
-            weatherIcon.widthAnchor.constraint(equalToConstant: 86),
-            weatherIcon.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15),
-            weatherIcon.centerYAnchor.constraint(equalTo: temperatureLabel.centerYAnchor),
-            weatherIcon.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 8)
-        ])
+//        NSLayoutConstraint.activate([
+//            cityLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 20),
+//            cityLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
+//            cityLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15),
+//            cityLabel.heightAnchor.constraint(equalToConstant: 20),
+//            temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 18),
+//            temperatureLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
+//            temperatureLabel.heightAnchor.constraint(equalToConstant: 71),
+//            weatherIcon.heightAnchor.constraint(equalToConstant: 86),
+//            weatherIcon.widthAnchor.constraint(equalToConstant: 86),
+//            weatherIcon.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15),
+//            weatherIcon.centerYAnchor.constraint(equalTo: temperatureLabel.centerYAnchor),
+//            weatherIcon.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 8)
+//        ])
         
         NSLayoutConstraint.activate([
             statsStackView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 24),
@@ -323,6 +289,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        60
+        50
     }
 }

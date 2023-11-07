@@ -41,7 +41,7 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .customContrastColor
-        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         label.textAlignment = .center
         return label
     }()
@@ -84,7 +84,7 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
         stackView.setConstraintsToParents(contentView)
         
         NSLayoutConstraint.activate([
-            iconImageView.heightAnchor.constraint(equalToConstant: 33)
+            iconImageView.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 }
